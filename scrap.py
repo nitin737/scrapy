@@ -46,17 +46,14 @@ def scrap_states_data():
         if len(one_by_one.find_all("td")) == 5:
             row["S. No."] = one_by_one.find_all("td")[0].text
             row["Name of State / UT"] = one_by_one.find_all("td")[1].text
-            row["Total Confirmed cases (Including 71 foreign Nationals)"] = one_by_one.find_all(
-                "td")[2].text
-            row["Cured/Discharged/Migrated"] = one_by_one.find_all("td")[
-                3].text
+            row["Total Confirmed cases (Including 71 foreign Nationals)"] = one_by_one.find_all("td")[2].text
+            row["Cured/Discharged/Migrated"] = one_by_one.find_all("td")[3].text
             row["Death"] = one_by_one.find_all("td")[4].text
             table_list.append(row)
         else:
             pass
     #df = pd.DataFrame(table_list)
-
-    return row
+    return table_list
 
 def convert_to_html_table():  # call this method to tirgger state wise corona status
     html_body_code = html_template.get_html()
@@ -141,6 +138,6 @@ def send_to_slack():
 
 
 if __name__ == '__main__':
-    generate_overall_status()
+    #generate_overall_status()
     convert_to_html_table()
     #print(read_property('sender_credentials', 'sender.email'))
